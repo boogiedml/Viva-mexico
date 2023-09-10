@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        myBrown: "#4C3D3D",
+        myBrown: "#A7430A",
         myGold: "#CB9247",
       },
       fontFamily: {
