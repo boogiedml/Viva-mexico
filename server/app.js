@@ -11,12 +11,12 @@ import verifyJwt from "./helpers/jwt.js";
 dotenv.config();
 const app = express();
 const apiRoute = "/api/v1";
-const port = process.env.PORT || 1001;
+const port = process.env.PORT || 8000;
 
 // Middleware
 app.use(express.json());
 app.use(cors());
-// app.use(verifyJwt);
+app.use(verifyJwt);
 app.use(morgan("tiny"));
 
 // Routes
