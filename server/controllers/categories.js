@@ -62,6 +62,7 @@ const addCategory = async (req, res) => {
         error: true,
         message: "Category name already exists 🤪",
       });
+      
     } else {
       console.error(error);
       res.status(500).json({

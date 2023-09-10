@@ -16,12 +16,12 @@ const AddProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const toast = useRef(null);
-  const token = Cookies.get("__mo_naco");
+  const token = Cookies.get("__v_i_va");
   const showError = ({ msgContent }) => {
     toast.current.show({
       severity: "error",
       summary: "Error",
-      detail: msgContent,
+      detail: msgContent, 
       life: 3000,
     });
   };

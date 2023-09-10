@@ -17,7 +17,7 @@ const UpdateProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
   const toast = useRef(null);
-  const token = Cookies.get("__mo_naco");
+  const token = Cookies.get("__v_i_va");
   const showError = ({ msgContent }) => {
     toast.current.show({
       severity: "error",

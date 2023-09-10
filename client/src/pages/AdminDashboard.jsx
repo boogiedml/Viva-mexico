@@ -4,7 +4,7 @@ import { Button, ProductCard } from "../components";
 import { BiCategoryAlt, BiFoodTag } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
-import { HashLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 import Cookies from "js-cookie";
 import { motion } from "framer-motion";
 
@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  const token = Cookies.get("__trt_privé");
+  const token = Cookies.get("__v_i_va");
 
   useEffect(() => {
     const fetchCat = async () => {
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
             <div>
               {isLoadingProducts ? (
                 <div className="w-full min-h-[400px] md:min-h-[250px] flex justify-center items-center">
-                  <HashLoader size={50} color="#040D12" />
+                  <ClipLoader size={30} color="#040D12" />
                 </div>
               ) : (
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">

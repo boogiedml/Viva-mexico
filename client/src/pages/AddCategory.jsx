@@ -14,7 +14,7 @@ const AddCategory = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const toast = useRef(null);
-  const token = Cookies.get("__mo_naco");
+  const token = Cookies.get("__v_i_va");
   const showError = ({ msgContent }) => {
     toast.current.show({
       severity: "error",
