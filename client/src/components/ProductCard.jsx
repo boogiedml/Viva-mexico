@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineStar } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Modal from "./Modal";
@@ -69,9 +69,12 @@ const ProductCard = ({ admin, productDetails, onDelete }) => {
             ₦ {productDetails?.price}
           </span>
           {productDetails?.vipPrice && (
-            <span className="text-sm md:text-base text-zinc-500 font-[600] font-grotesk">
-              ₦ {productDetails?.vipPrice}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm md:text-base text-zinc-500 font-[600] font-grotesk">
+                ₦ {productDetails?.vipPrice}
+              </span>
+              <AiOutlineStar />
+            </div>
           )}
         </div>
       </div>
