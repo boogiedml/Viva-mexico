@@ -64,10 +64,15 @@ const ProductCard = ({ admin, productDetails, onDelete }) => {
         <p className="text-xs md:text-sm font-[500] text-gray-700 font-grotesk line-clamp-2 mb-2">
           {productDetails?.desc}{" "}
         </p>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-2">
           <span className="text-sm md:text-base text-zinc-500 font-[600] font-grotesk">
             ₦ {productDetails?.price}
           </span>
+          {productDetails?.vipPrice && (
+            <span className="text-sm md:text-base text-zinc-500 font-[600] font-grotesk">
+              ₦ {productDetails?.vipPrice}
+            </span>
+          )}
         </div>
       </div>
       {isModalOpen && (

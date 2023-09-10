@@ -48,6 +48,7 @@ const UpdateProduct = () => {
       name: productDetails?.name || "",
       desc: productDetails?.desc || "",
       price: productDetails?.price || "",
+      vipPrice: productDetails?.vipPrice || "",
       category: productDetails?.category._id || "",
       image: productDetails?.image || "",
     },
@@ -55,6 +56,7 @@ const UpdateProduct = () => {
       name: Yup.string().required("Product name is required"),
       desc: Yup.string(),
       price: Yup.string().required("Product price is required"),
+      vipPrice: Yup.string().required("VIP price is required"),
       image: Yup.string(),
     }),
     onSubmit: async (values) => {
@@ -88,8 +90,8 @@ const UpdateProduct = () => {
       <Navbar />
       <section className="flex-grow w-full container mx-auto px-5 md:px-0 lg:px-8 flex items-center justify-center">
         <div className="w-[100%] sm:w-[90%] md:w-[500px]">
-          <div className="mt-4 bg-gray-100 p-4 rounded-xl">
-            <h3 className="text-base lg:text-lg font-grotesk mb-3">
+          <div className="mt-4 bg-myGold bg-opacity-40 p-4 rounded-xl">
+            <h3 className="text-base lg:text-lg font-grotesk mb-3 text-myBrown">
               Update Product
             </h3>
             <form onSubmit={productUpdateFormik.handleSubmit}>
@@ -118,6 +120,15 @@ const UpdateProduct = () => {
                 icon={<GiPriceTag />}
                 onChange={productUpdateFormik.handleChange}
                 defaultValue={productUpdateFormik.values.price}
+                onBlur={productUpdateFormik.handleBlur}
+              />
+              <Input
+                label="VIP Price"
+                name="vipPrice"
+                placeholder="Ex. 500"
+                icon={<GiPriceTag />}
+                onChange={productUpdateFormik.handleChange}
+                defaultValue={productUpdateFormik.values.vipPrice}
                 onBlur={productUpdateFormik.handleBlur}
               />
               <Input

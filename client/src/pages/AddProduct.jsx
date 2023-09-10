@@ -43,6 +43,7 @@ const AddProduct = () => {
       name: "",
       desc: "",
       price: "",
+      vipPrice: "",
       category: "",
       image: "",
     },
@@ -50,10 +51,12 @@ const AddProduct = () => {
       name: Yup.string().required("Product name is required"),
       desc: Yup.string(),
       price: Yup.string().required("Product price is required"),
+      vipPrice: Yup.string().required("VIP price is required"),
       category: Yup.string().required("Category is required"),
       image: Yup.string().required("Product image is required"),
     }),
     onSubmit: async (values) => {
+      console.log(values);
       setIsLoading(true);
       const url = "/product";
       const config = {
@@ -64,6 +67,7 @@ const AddProduct = () => {
       };
       try {
         const { data } = await axios.post(url, values, config);
+        console.log(data);
         if (!data.error) {
           navigate("/admin");
         }
@@ -123,6 +127,15 @@ const AddProduct = () => {
                 icon={<GiPriceTag />}
                 onChange={productFormik.handleChange}
                 defaultValue={productFormik.values.price}
+                onBlur={productFormik.handleBlur}
+              />
+              <Input
+                label="VIP Price"
+                name="vipPrice"
+                placeholder="Ex. 500"
+                icon={<GiPriceTag />}
+                onChange={productFormik.handleChange}
+                defaultValue={productFormik.values.vipPrice}
                 onBlur={productFormik.handleBlur}
               />
               <Input
