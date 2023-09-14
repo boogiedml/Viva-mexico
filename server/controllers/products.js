@@ -58,14 +58,14 @@ const addProduct = async (req, res) => {
 
     const result = await cloudinary.uploader.upload(req.file.path);
 
-    const product = new Product({ 
+    const product = new Product({
       name: req.body.name,
       desc: req.body.desc,
       price: req.body.price,
       vipPrice: req.body.vipPrice,
       category: req.body.category,
     });
- 
+
     const newProduct = await product.save();
     if (!newProduct) {
       return res.status(500).json({
@@ -103,7 +103,7 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    const { category, name, price, desc } = req.body;
+    const { category, name, price, vipPrice, desc } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {
