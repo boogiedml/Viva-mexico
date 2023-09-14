@@ -56,7 +56,7 @@ const UpdateProduct = () => {
       name: Yup.string().required("Product name is required"),
       desc: Yup.string(),
       price: Yup.string().required("Product price is required"),
-      vipPrice: Yup.string().required("VIP price is required"),
+      vipPrice: Yup.string(),
       image: Yup.string(),
     }),
     onSubmit: async (values) => {
