@@ -13,7 +13,7 @@ const Navbar = ({ hamburgerColor }) => {
   const handleLogout = () => {
     Cookies.remove("__v_i_va");
     Cookies.remove("__thrillin_g__experience");
-    navigate("/");
+    navigate("/"); 
   };
 
   return (
@@ -33,9 +33,7 @@ const Navbar = ({ hamburgerColor }) => {
         )}
       </nav>
       <AnimatePresence>
-        {isNavMenuOpened && (
-          <NavbarMenu setIsNavMenuOpened={setIsNavMenuOpened} />
-        )}
+        {isNavMenuOpened && <NavbarMenu setMenuOpen={setIsNavMenuOpened} />}
       </AnimatePresence>
     </>
   );

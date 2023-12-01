@@ -95,7 +95,7 @@ const Signin = () => {
             </form>
           </div>
         </div>
-      </section>
+      </section> 
       <Footer />
       <Toast ref={toast} />
     </div>

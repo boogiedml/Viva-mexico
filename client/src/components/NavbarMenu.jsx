@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const NavbarMenu = () => {
-  const location = useLocation();
+const NavbarMenu = ({ menuOpen, setMenuOpen }) => {
+  const menuRef = useRef(null);
   const screenWidth = window.innerWidth;
   const smallScreen = screenWidth < 640;
 
@@ -19,8 +19,23 @@ const NavbarMenu = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleBodyClick = (e) => {
+      if (menuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleBodyClick);
+    };
+  }, [menuOpen]);
+
   return (
     <motion.div
+      ref={menuRef}
       initial={
         smallScreen
           ? { opacity: 0 }

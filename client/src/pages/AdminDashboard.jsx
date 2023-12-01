@@ -12,36 +12,48 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const token = Cookies.get("__v_i_va");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+   const fetchCat = async () => {
+     try {
+       const response = await axios.get("/category");
+       setCategories(response?.data?.categoryList);
+     } catch (error) {
+       console.error("Error fetching category data:", error);
+     }
+   };
+
+   const fetchPro = async () => {
+     try {
+       setIsLoadingProducts(true);
+       const response = await axios.get("/product");
+       setAllProducts(response?.data?.productList); // Save all products
+       setProducts(response?.data?.productList);
+     } catch (error) {
+       console.error("Error fetching product data:", error);
+     } finally {
+       setIsLoadingProducts(false);
+     }
+   };
 
   useEffect(() => {
-    const fetchCat = async () => {
-      try {
-        const response = await axios.get("/category");
-        setCategories(response?.data?.categoryList);
-        // console.log(response?.data?.categoryList);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    const fetchPro = async () => {
-      try {
-        setIsLoadingProducts(true);
-        const response = await axios.get("/product");
-        // console.log(response?.data?.productList);
-        setProducts(response?.data?.productList);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoadingProducts(false);
-      }
-    };
-
     fetchCat();
     fetchPro();
   }, []);
+
+ useEffect(() => {
+   if (selectedCategory) {
+     const filteredProducts = allProducts.filter(
+       (p) => p.category._id === selectedCategory._id
+     );
+     setProducts(filteredProducts);
+   } else {
+     setProducts(allProducts); // Show all products if no category is selected
+   }
+ }, [selectedCategory, allProducts]);
 
   const deleteProduct = async (productId) => {
     const config = {
@@ -51,7 +63,6 @@ const AdminDashboard = () => {
     };
     try {
       const response = await axios.delete(`/product/${productId}`, config);
-      // If successful, update the product list
       if (response?.status === 204) {
         setProducts((prevProducts) =>
           prevProducts.filter((p) => p._id !== productId)
@@ -96,8 +107,13 @@ const AdminDashboard = () => {
                 transition={{ type: "tween", duration: 1 }}
                 className="w-fit max-w-[120px] cursor-pointer"
                 key={c._id}
+                onClick={() => setSelectedCategory(c)}
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto bg-myGold rounded-full border-myGold border-4">
+                <div
+                  className={`w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto bg-myGold rounded-full ${
+                    selectedCategory === c ? " border-myBrown" : "border-myGold"
+                  } border-4`}
+                >
                   <img
                     src={c.image}
                     alt=""
