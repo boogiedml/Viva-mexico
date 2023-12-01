@@ -83,24 +83,10 @@ const NavbarMenu = ({ menuOpen, setMenuOpen }) => {
         <div className="text-lg sm:text-[15px] text-myBrown font-outfit flex gap-10 mt-20 sm:mt-8">
           <a
             className="hover:transform hover:-translate-y-0.5 transition-all duration-300"
-            href="https://twitter.com/boogiedml"
+            href="https://twitter.com/vivamexicolifestyle"
             target="_blank"
           >
             TW
-          </a>
-          <a
-            className="hover:transform hover:-translate-y-0.5 transition-all duration-300"
-            href="https://github.com/boogiedml"
-            target="_blank"
-          >
-            GH
-          </a>
-          <a
-            className="hover:transform hover:-translate-y-0.5 transition-all duration-300"
-            href="https://www.linkedin.com/in/sherifdeen-ishola-mern-stack-web-developer/"
-            target="_blank"
-          >
-            LN
           </a>
           <a
             className="hover:transform hover:-translate-y-0.5 transition-all duration-300"
